@@ -1,0 +1,99 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+
+ .wp-block-cgb-block-aios-listings-block  {
+  background: $green;
+  border: 0.2rem solid $black;
+  color: $black;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem;
+}
+
+// Backend Settings
+.aios-block-container {
+  position: relative;
+  .aios-form-group {
+      width: 100%;
+      margin-top: .5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-bottom: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+      &.aios-checkbox{
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .aios-block-col{
+        legend{
+          margin-bottom: 10px;
+          font-size: 13px;
+          text-transform: uppercase;
+          font-weight: 600;
+        }
+      }
+  }
+}
+
+.aios-form-control{
+  select{
+    &.components-select-control__input{
+      width: 100% !important;
+      height: 45px !important;
+    }
+  }
+  input{
+    &[type=checkbox]{
+      &.components-checkbox-control__input{
+        border-radius: 2px;
+        -webkit-appearance: none;
+        display: inline-block;
+        position: relative;
+        background: #fff;
+        color: #555;
+        clear: none;
+        cursor: pointer;
+        margin: 5px 10px 0 0;
+        outline: 0;
+        text-align: center;
+        vertical-align: top;
+        min-width: 18px;
+        transition: .05s border-color ease-in-out;
+        width: 20px;
+        height: 20px;
+        border: solid 1px #ccd1d9;
+        box-shadow: 0 0 0 0rgba(0,0,0,0);
+        overflow: hidden;
+        &:checked{
+          border: solid 1px #007cba;
+
+
+          &::before{
+            content: '';
+            display: inline-block;
+            background-color: #007cba;
+            margin: 0;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+svg.components-checkbox-control__checked, 
+svg.components-checkbox-control__indeterminate{
+  top: 2px !important;
+}
+
+.aios-block-preview{
+  padding: 30px 0px;
+}

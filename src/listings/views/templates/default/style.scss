@@ -1,0 +1,123 @@
+.aios-block-default {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    .aios-block-default-item{
+        transform: translateZ(0);
+        flex: 0 1 calc(50% - 10px);
+        margin: 5px;
+        a{
+            text-decoration: none; 
+            color: #000;
+            &.aios-block-default-listing-item{
+                &:hover{
+                    .aios-block-default-details{
+                        .aios-default-listing-price{
+                            top: -56px;
+                        }
+                        .aios-default-plan{
+                            bottom: 0;
+                        }
+                    }
+                }
+    
+                .aios-block-default-thumbnail{
+                    position: relative;
+                    overflow: hidden;
+                    
+                    canvas {
+                        display: block;
+                        width: 100%;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: center center;
+                        -webkit-transition: all 0.3s ease-in-out;
+                        transition: all 0.3s ease-in-out;
+                    }
+                }
+        
+                .aios-block-default-details{
+                    position: absolute;
+                    z-index: 4;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: 0;
+                    padding: 25px;
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-orient: vertical;
+                    -webkit-box-direction: normal;
+                    -ms-flex-flow: column wrap;
+                    flex-flow: column wrap;
+                    overflow: hidden;
+                    -webkit-transition: all 0.3s ease-in-out;
+                    transition: all 0.3s ease-in-out;
+        
+                    .aios-default-listing-address {
+                        font-size: 25px;
+                        font-weight: 300;
+                        line-height: 1;
+                        text-transform: uppercase;
+                        color: #fff;
+                    }
+        
+                    .aios-default-listing-price {
+                        font-size: 30px;
+                        font-weight: 400;
+                        line-height: 1;
+                        color: #fff;
+                        margin-top: auto;
+                        padding-top: 10px;
+                        position: relative;
+                        top: 0;
+                        -webkit-transition: top 0.3s ease;
+                        transition: top 0.3s ease;
+                    }
+        
+                    .aios-default-plan {
+                        display: -webkit-box;
+                        display: -ms-flexbox;
+                        display: flex;
+                        -webkit-box-orient: horizontal;
+                        -webkit-box-direction: normal;
+                        -ms-flex-flow: row wrap;
+                        flex-flow: row wrap;
+                        padding-bottom: 16px;
+                        position: absolute;
+                        bottom: -56px;
+                        -webkit-transition: bottom 0.3s ease;
+                        transition: bottom 0.3s ease;
+                        
+                        span{
+                            display: block;
+                            position: relative;
+                            text-align: center;
+                            font-size: 16px;
+                            font-weight: 300;
+                            line-height: 1;
+                            color: #fff;
+    
+                            em{
+                                display: block;
+                                font-style: normal;
+                                color: #fff;
+                                text-transform: uppercase;
+                                margin-bottom: 8px;
+                            }
+                            
+                            & + span{
+                                margin-left: 30px;
+                            }
+                        }
+                        
+                    }
+        
+                }           
+            }
+        }
+
+    }
+}

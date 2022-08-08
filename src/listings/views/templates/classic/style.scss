@@ -1,0 +1,44 @@
+.aios-block-classic {
+    width: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    .aios-block-classic-item{
+        transform: translateZ(0);
+        flex: 0 1 calc(50% - 10px);
+        margin: 5px;
+        margin-bottom: 25px;
+        a{
+            text-decoration: none; 
+            color: #000;
+            &.aios-block-classic-listing-item{
+                .aios-block-classic-thumbnail{
+                    position: relative;
+                    overflow: hidden;
+                    
+                    canvas {
+                        display: block;
+                        width: 100%;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        background-position: center center;
+                        -webkit-transition: all 0.3s ease-in-out;
+                        transition: all 0.3s ease-in-out;
+                    }
+                } 
+                
+                .aios-block-classic-details{
+                    display: flex;
+                    flex-direction: row-reverse;
+                    align-items: center;
+                    justify-content: space-between;
+                    background-color: #f5f4f4;
+                    padding: 35px .8vw;
+                    -webkit-transition: background-color 0.3s linear;
+                    -o-transition: background-color 0.3s linear;
+                    transition: background-color 0.3s linear;
+                }
+            }
+        }
+
+    }
+}

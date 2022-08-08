@@ -1,0 +1,14 @@
+{
+  "name": "aios-gutenberg-cgb-guten-block",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cgb-scripts start",
+    "build": "cgb-scripts build",
+    "eject": "cgb-scripts eject"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cgb-scripts": "1.23.1"
+  }
+}
