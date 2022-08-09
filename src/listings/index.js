@@ -37,7 +37,8 @@ registerBlockType( 'agentimage/aios-gutenberg', {
 			default: 4
 		},
 		featuredOnly: {
-			type: 'boolean'
+			type: 'boolean',
+			default: false
 		}
 	},
 	edit: EditClass, 

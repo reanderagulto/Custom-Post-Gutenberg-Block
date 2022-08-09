@@ -77,13 +77,19 @@ function aios_gutenberg_cgb_block_assets() { // phpcs:ignore
 	register_block_type(
 		'agentimage/aios-gutenberg', array(
 			// Enqueue blocks.style.build.css on both frontend & backend.
-			'style'         => 'aios_gutenberg-cgb-style-css',
+			'style'         	=> 'aios_gutenberg-cgb-style-css',
 			// Enqueue blocks.build.js in the editor only.
-			'editor_script' => 'aios_gutenberg-cgb-block-js',
+			'editor_script' 	=> 'aios_gutenberg-cgb-block-js',
 			// Enqueue blocks.editor.build.css in the editor only.
-			'editor_style'  => 'aios_gutenberg-cgb-block-editor-css',
+			'editor_style'  	=> 'aios_gutenberg-cgb-block-editor-css',
 			// Render Callback
-			'render_callback' => 'aios_gutenberg_render_callback'
+			'attributes'    	=> array(
+					'listings'		=> array('type' => 'object', 'default'  => array()), 
+					'selectedTheme' => array('type' => 'string',  'default' => 'classic'),
+					'numberOfPost'  => array('type' => 'number',  'default' => 4),
+					'featuredOnly'	=> array('type' => 'boolean', 'default' => false)
+			),
+			'render_callback' 	=> 'aios_gutenberg_render_callback'
 		)
 	);
 }
@@ -98,15 +104,20 @@ add_action( 'init', 'aios_gutenberg_cgb_block_assets' );
  * @param string   $content        Rendered block output. ie. <InnerBlocks.Content />.
  * @param WP_Block $block_instance The instance of the WP_Block class that represents the block being rendered.
  */
-function aios_gutenberg_render_callback( $block_attributes, $content, $block_instance ){
+function aios_gutenberg_render_callback( $attributes, $content, $block_instance ){
 	ob_start();
 	/**
 	 * Keeping the markup to be returned in a separate file is sometimes better, especially if there is very complicated markup.
 	 * All of passed parameters are still accessible in the file.
 	 */
-	echo '<pre>'; 
-	print_r($block_attributes['selectedTheme']);
-	echo '</pre>';
-	require plugin_dir_path( __FILE__ ) . 'templates/classic/index.php';
+	switch ($attributes['selectedTheme']){
+		case 'classic':
+			require plugin_dir_path( __FILE__ ) . 'listings/templates/classic/index.php';
+			break;
+		case 'default':
+			require plugin_dir_path( __FILE__ ) . 'listings/templates/default/index.php';
+			break;
+		default:
+	}
 	return ob_get_clean();
 }

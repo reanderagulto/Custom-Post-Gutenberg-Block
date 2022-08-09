@@ -25,6 +25,8 @@ import { DefaultTheme } from '../views/templates/default/index.js';
 export default function Edit ( props ){
     const { className, attributes, setAttributes } = props;
 
+    const blockProps = useBlockProps();
+
     function updatelistings(){
         if( ! props.attributes.listings ) {
             axios.get('/wp-json/aios-listings/v1/listing', {
@@ -49,6 +51,7 @@ export default function Edit ( props ){
     }
     
     function updateFeaturedOnly( val ) {
+        console.log(val);
         props.setAttributes( { featuredOnly: val } );
         updatelistings();
     }
@@ -60,7 +63,7 @@ export default function Edit ( props ){
     }
 
     return (
-        <div { ...useBlockProps }>
+        <div { ...blockProps }>
             <InspectorControls>
                 <PanelBody
                     title={ __('Listings Settings') }
