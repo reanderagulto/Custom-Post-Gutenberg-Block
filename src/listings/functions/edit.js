@@ -17,8 +17,6 @@ import {
 
 const { serverSideRender: ServerSideRender } = wp;
 
-import '../sass/style.scss';
-
 export default function Edit ( props ){
     const { className, attributes, setAttributes } = props;
 
