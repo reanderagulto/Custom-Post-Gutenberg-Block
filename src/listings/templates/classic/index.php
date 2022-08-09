@@ -21,13 +21,13 @@
 					<div class="aios-block-classic-details">
 							<div class="aios-block-classic-address">
 								<i class="ai-font-location-c"></i>
-								<?=$listing['listing_details']['address_street_name']?>
+								<?=$listing['address_street_name']?>
 								<span>
-									<?=$listing['listing_details']['address_city']?>
+									<?=$listing['address_city']?>
 								</span>
 							</div>
 						<div class="aios-classic-listing-price">
-							<?=$listing['listing_details']['list_price']?>
+							<?=$listing['list_price']?>
 						</div>
 					</div>
 				</a>

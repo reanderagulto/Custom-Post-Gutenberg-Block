@@ -12,15 +12,13 @@ import {
     PanelBody, 
     RangeControl, 
     SelectControl,
-    CheckboxControl
+    CheckboxControl,
 } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+
+const { serverSideRender: ServerSideRender } = wp;
 
 import '../sass/editor.scss';
-
-// Import Themes
-import { ClassicTheme } from '../views/templates/classic/index.js';
-import { DefaultTheme } from '../views/templates/default/index.js';
+import '../sass/style.scss';
 
 export default function Edit ( props ){
     const { className, attributes, setAttributes } = props;
@@ -35,7 +33,21 @@ export default function Edit ( props ){
                     'featured_only' : (props.attributes.featuredOnly == true) ? 1 : '' 
                 }
             }).then( (response) => {
-                props.setAttributes( { listings: response.data } )
+                let customList = [];
+                response.data.forEach(element => {
+                    customList.push( { 
+                        'url'                 : element.url, 
+                        'image_full'          : element.image_full,
+                        'address_street_name' : element.listing_details.address_street_name,
+                        'address_city'        : element.listing_details.address_city,
+                        'list_price'          : element.listing_details.list_price,
+                        'details_bedrooms'    : element.listing_details.details_bedrooms,
+                        'details_bathrooms'   : element.listing_details.details_bathrooms,
+                        'details_lot_area'    : element.listing_details.details_lot_area,
+                        'full_address'        : element.listing_details.full_address
+                     } );
+                });
+                props.setAttributes( { listings: customList} );
             })
         }
     }
@@ -51,7 +63,6 @@ export default function Edit ( props ){
     }
     
     function updateFeaturedOnly( val ) {
-        console.log(val);
         props.setAttributes( { featuredOnly: val } );
         updatelistings();
     }
@@ -128,8 +139,11 @@ export default function Edit ( props ){
             </InspectorControls>
 
             <div class="aios-block-preview">
-                { props.attributes.selectedTheme === 'classic' && ClassicTheme(props.attributes.listings) }
-                { props.attributes.selectedTheme === 'default' && DefaultTheme(props.attributes.listings) }
+                <ServerSideRender 
+                    block="agentimage/aios-gutenberg"
+                    attributes={
+                        props.attributes
+                    }/>
             </div>
 
         </div>

@@ -19,20 +19,20 @@
 					<canvas width="590" height="400" data-src="<?=$listing['image_full']?>" style="background-image: url(<?=$listing['image_full']?>)"></canvas>
 					</div>
 					<div class="aios-block-default-details">
-						<div class="aios-default-listing-address"><?=$listing['listing_details']['full_address']?></div> 
-						<div class="aios-default-listing-price"><?=$listing['listing_details']['list_price']?></div>
+						<div class="aios-default-listing-address"><?=$listing['full_address']?></div> 
+						<div class="aios-default-listing-price"><?=$listing['list_price']?></div>
 						<div class="aios-default-plan">
 							<span>
 								<em>Beds</em>
-								<?=$listing['listing_details']['details_bedrooms']?>
+								<?=$listing['details_bedrooms']?>
 							</span>
 							<span>
 								<em>Baths</em>
-								<?=$listing['listing_details']['details_bathrooms']?>
+								<?=$listing['details_bathrooms']?>
 							</span>
 							<span>
 								<em>SQ. FT</em>
-								<?=$listing['listing_details']['details_lot_area']?>
+								<?=$listing['details_lot_area']?>
 							</span>
 						</div>
 					</div>
