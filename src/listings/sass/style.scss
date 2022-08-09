@@ -13,5 +13,25 @@
   padding: 2rem;
 }
 
-@import url('./classic.scss');
-@import url('./default.scss');
+/**
+ * Editor Stylesheet
+ *
+ * CSS for backend editor
+ */
+ @import 'editor/editor';
+
+/**
+ * Classic Theme Template
+ *
+ * CSS for Classic Themes for frontend x backend
+ */
+@import 'templates/classic';
+
+/**
+ * Default Theme Template
+ *
+ * CSS for Default Themes for frontend x backend
+ */
+@import 'templates/default';
+
+

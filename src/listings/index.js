@@ -6,7 +6,6 @@
  */
 
 //  Import CSS.
-import './sass/editor.scss';
 import './sass/style.scss';
 
 const { __ } = wp.i18n; // Import __() from wp.i18n

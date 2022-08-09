@@ -17,7 +17,6 @@ import {
 
 const { serverSideRender: ServerSideRender } = wp;
 
-import '../sass/editor.scss';
 import '../sass/style.scss';
 
 export default function Edit ( props ){
