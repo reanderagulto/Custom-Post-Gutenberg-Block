@@ -12,10 +12,24 @@ import {
     PanelBody, 
     RangeControl, 
     SelectControl,
-    CheckboxControl,
+    CheckboxControl
 } from '@wordpress/components';
 
+import SortableGrid from '../components/SortableGrid';
+
 const { serverSideRender: ServerSideRender } = wp;
+
+var items = [
+    "Gold",
+    "Crimson",
+    "Hotpink",
+    "Blueviolet",
+    "Cornflowerblue",
+    "Skyblue",
+    "Lightblue",
+    "Aquamarine",
+    "Burlywood"
+  ]
 
 export default function Edit ( props ){
     const { className, attributes, setAttributes } = props;
@@ -132,6 +146,18 @@ export default function Edit ( props ){
                             />
                         </div>
                     </fieldset>
+                    
+                    <fieldset class="aios-form-group">
+                        <div class="aios-block-col">
+                            <legend for="numberOfPost">
+                                { __( 'Sorting', 'aios-listings' ) }
+                            </legend>
+                        </div>
+                        <div class="aios-block-col">
+                            <SortableGrid items={ props.attributes.listings } />
+                        </div>
+                    </fieldset>
+
                 </PanelBody>
             </InspectorControls>
 
