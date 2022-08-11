@@ -12,7 +12,8 @@ import {
     PanelBody, 
     RangeControl, 
     SelectControl,
-    CheckboxControl
+    CheckboxControl,
+    Button
 } from '@wordpress/components';
 
 import SortableGrid from '../components/SortableGrid';
@@ -23,33 +24,36 @@ export default function Edit ( props ){
     const { className, attributes, setAttributes } = props;
     const blockProps = useBlockProps();
 
-    console.log(props.attributes);
+    function fetchdata(){
+        let customListing = "";
+        axios.get('/wp-json/aios-listings/v1/listing', {
+            params: {
+                'posts_per_page': props.attributes.numberOfPost,
+                'featured_only' : (props.attributes.featuredOnly == true) ? 1 : '' 
+            }
+        }).then( (response) => {
+            let customList = [];
+            response.data.forEach(element => {
+                customList.push( { 
+                    'url'                 : element.url, 
+                    'image_full'          : element.image_full,
+                    'address_street_name' : element.listing_details.address_street_name,
+                    'address_city'        : element.listing_details.address_city,
+                    'list_price'          : element.listing_details.list_price,
+                    'details_bedrooms'    : element.listing_details.details_bedrooms,
+                    'details_bathrooms'   : element.listing_details.details_bathrooms,
+                    'details_lot_area'    : element.listing_details.details_lot_area,
+                    'full_address'        : element.listing_details.full_address
+                    } );
+            });
+            customListing = JSON.stringify(customList);
+            props.setAttributes( { sorted: customListing } );
+        });
+    }
 
     function updatelistings(){
-        if( ! props.attributes.listings ) {
-            console.log( "Pasok Dito " + props.attributes.listings );
-            axios.get('/wp-json/aios-listings/v1/listing', {
-                params: {
-                    'posts_per_page': props.attributes.numberOfPost,
-                    'featured_only' : (props.attributes.featuredOnly == true) ? 1 : '' 
-                }
-            }).then( (response) => {
-                let customList = [];
-                response.data.forEach(element => {
-                    customList.push( { 
-                        'url'                 : element.url, 
-                        'image_full'          : element.image_full,
-                        'address_street_name' : element.listing_details.address_street_name,
-                        'address_city'        : element.listing_details.address_city,
-                        'list_price'          : element.listing_details.list_price,
-                        'details_bedrooms'    : element.listing_details.details_bedrooms,
-                        'details_bathrooms'   : element.listing_details.details_bathrooms,
-                        'details_lot_area'    : element.listing_details.details_lot_area,
-                        'full_address'        : element.listing_details.full_address
-                     } );
-                });
-                props.setAttributes( { listings: JSON.stringify(customList) } );
-            })
+        if( !props.attributes.sorted ){
+            fetchdata();
         }
     }
     function updateSelectedTheme( val ) {
@@ -60,15 +64,13 @@ export default function Edit ( props ){
     }
     function updateFeaturedOnly( val ) {
         props.setAttributes( { featuredOnly: val } );
+        console.log(props.attributes);
+    }
+    function updateSettings(){
+        fetchdata();
     }
 
     updatelistings();
-
-    console.log( "Listing Outside = " + props.attributes.listings );
-
-    if( ! props.attributes.listings ){
-        return 'Loading...';
-    }
 
     return (
         <div { ...blockProps }>
@@ -140,18 +142,28 @@ export default function Edit ( props ){
                             </legend>
                         </div>
                         <div class="aios-block-col">
-                            <SortableGrid items={ JSON.parse(props.attributes.listings) } />
+                            { !props.attributes.sorted && <p>Loading....</p>}
+                            { props.attributes.sorted  && <SortableGrid items={ JSON.parse(props.attributes.sorted) } attribs={ props }/> }
                         </div>
+                    </fieldset>
+
+                    <fieldset class="aios-form-group text-center">
+                        <Button 
+                            variant='secondary'
+                            onClick={ updateSettings() }
+                        >
+                            Update Settings
+                        </Button>
                     </fieldset>
 
                 </PanelBody>
             </InspectorControls>
 
             <div class="aios-block-preview">
-                {/* <ServerSideRender 
+                <ServerSideRender 
                     block="agentimage/aios-gutenberg"
                     attributes={ props.attributes }
-                /> */}
+                />
             </div>
 
         </div>

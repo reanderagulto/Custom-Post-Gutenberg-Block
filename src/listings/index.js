@@ -25,9 +25,12 @@ registerBlockType( 'agentimage/aios-gutenberg', {
 	],
 	attributes: {
 		listings: {
-			type: 'string',
-			default: ''
+			type: 'object'
 		}, 
+		sorted:{
+			type: 'string',
+			default: null
+		},
 		selectedTheme: {
 			type: 'string',
 			default: 'classic'
