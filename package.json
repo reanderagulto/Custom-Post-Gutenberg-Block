@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
-    "cgb-scripts": "1.23.1"
+    "cgb-scripts": "1.23.1",
+    "react-sortable": "^2.0.0"
   }
 }

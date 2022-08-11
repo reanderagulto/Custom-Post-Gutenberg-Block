@@ -45,14 +45,6 @@ function aios_gutenberg_cgb_block_assets() { // phpcs:ignore
 		true // Enqueue the script in the footer.
 	);
 
-	// Register block editor styles for backend.
-	wp_register_style(
-		'aios_gutenberg-cgb-block-editor-css', // Handle.
-		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
-		array( 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-editor' ), // Dependency to include the CSS after it.
-		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
-	);
-
 	// WP Localized globals. Use dynamic PHP stuff in JavaScript via `cgbGlobal` object.
 	wp_localize_script(
 		'aios_gutenberg-cgb-block-js',
