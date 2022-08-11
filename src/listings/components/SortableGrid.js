@@ -23,23 +23,27 @@ export default class SortableGrid extends React.Component {
   render() {
     const { items } = this.state
     
-
-    var gridItems = items.map((item, i) => {
+    if(items){
+      var gridItems = items.map((item, i) => {
+        return (
+          <SortableItem
+            key={i}
+            onSortItems={this.onSortItems}
+            items={items}
+            sortId={i}>
+            {item}
+          </SortableItem>
+        );
+      });
+  
       return (
-        <SortableItem
-          key={i}
-          onSortItems={this.onSortItems}
-          items={items}
-          sortId={i}>
-          {item}
-        </SortableItem>
-      );
-    });
-
-    return (
-      <ul className='sortable-grid'>
-        {gridItems}
-      </ul>
-    )
+        <ul className='sortable-grid'> {gridItems} </ul>
+      )
+    }
+    else{
+      return (
+        <p>Loading.....</p>
+      )
+    }
   }
 }

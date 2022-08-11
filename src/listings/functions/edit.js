@@ -64,7 +64,6 @@ export default function Edit ( props ){
     }
     function updateFeaturedOnly( val ) {
         props.setAttributes( { featuredOnly: val } );
-        console.log(props.attributes);
     }
     function updateSettings(){
         fetchdata();
@@ -142,20 +141,9 @@ export default function Edit ( props ){
                             </legend>
                         </div>
                         <div class="aios-block-col">
-                            { !props.attributes.sorted && <p>Loading....</p>}
-                            { props.attributes.sorted  && <SortableGrid items={ JSON.parse(props.attributes.sorted) } attribs={ props }/> }
+                            <SortableGrid items={ JSON.parse(props.attributes.sorted) } attribs={ props }/>
                         </div>
                     </fieldset>
-
-                    <fieldset class="aios-form-group text-center">
-                        <Button 
-                            variant='secondary'
-                            onClick={ updateSettings() }
-                        >
-                            Update Settings
-                        </Button>
-                    </fieldset>
-
                 </PanelBody>
             </InspectorControls>
 
