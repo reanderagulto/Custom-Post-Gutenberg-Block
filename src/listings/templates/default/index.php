@@ -12,7 +12,8 @@
 ?>
 <div class="aios-block-default">
 	<?php if ( isset( $attributes['selectedTheme'] ) && isset($attributes['listings'])): ?>
-		<?php foreach($attributes['listings'] as $key => $listing): ?>
+		<?php $listings = json_decode($attributes['listings']); ?>
+		<?php foreach($listings as $key => $listing): ?>
 			<div class="aios-block-default-item">
 				<a href="<?=$listing['url']?>" class="aios-block-default-listing-item">
 					<div class="aios-block-default-thumbnail">

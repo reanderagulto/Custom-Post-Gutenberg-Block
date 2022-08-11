@@ -19,25 +19,15 @@ import SortableGrid from '../components/SortableGrid';
 
 const { serverSideRender: ServerSideRender } = wp;
 
-var items = [
-    "Gold",
-    "Crimson",
-    "Hotpink",
-    "Blueviolet",
-    "Cornflowerblue",
-    "Skyblue",
-    "Lightblue",
-    "Aquamarine",
-    "Burlywood"
-  ]
-
 export default function Edit ( props ){
     const { className, attributes, setAttributes } = props;
-
     const blockProps = useBlockProps();
+
+    console.log(props.attributes);
 
     function updatelistings(){
         if( ! props.attributes.listings ) {
+            console.log( "Pasok Dito " + props.attributes.listings );
             axios.get('/wp-json/aios-listings/v1/listing', {
                 params: {
                     'posts_per_page': props.attributes.numberOfPost,
@@ -58,27 +48,23 @@ export default function Edit ( props ){
                         'full_address'        : element.listing_details.full_address
                      } );
                 });
-                props.setAttributes( { listings: customList} );
+                props.setAttributes( { listings: JSON.stringify(customList) } );
             })
         }
     }
-
     function updateSelectedTheme( val ) {
         props.setAttributes( { selectedTheme: val } );
-        updatelistings();
     }
-    
     function updateNoPost( val ) {
         props.setAttributes( { numberOfPost: val } );
-        updatelistings();
     }
-    
     function updateFeaturedOnly( val ) {
         props.setAttributes( { featuredOnly: val } );
-        updatelistings();
     }
 
     updatelistings();
+
+    console.log( "Listing Outside = " + props.attributes.listings );
 
     if( ! props.attributes.listings ){
         return 'Loading...';
@@ -154,7 +140,7 @@ export default function Edit ( props ){
                             </legend>
                         </div>
                         <div class="aios-block-col">
-                            <SortableGrid items={ props.attributes.listings } />
+                            <SortableGrid items={ JSON.parse(props.attributes.listings) } />
                         </div>
                     </fieldset>
 
@@ -162,11 +148,10 @@ export default function Edit ( props ){
             </InspectorControls>
 
             <div class="aios-block-preview">
-                <ServerSideRender 
+                {/* <ServerSideRender 
                     block="agentimage/aios-gutenberg"
-                    attributes={
-                        props.attributes
-                    }/>
+                    attributes={ props.attributes }
+                /> */}
             </div>
 
         </div>

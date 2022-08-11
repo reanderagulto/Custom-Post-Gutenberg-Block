@@ -25,7 +25,8 @@ registerBlockType( 'agentimage/aios-gutenberg', {
 	],
 	attributes: {
 		listings: {
-			type: 'object'
+			type: 'string',
+			default: ''
 		}, 
 		selectedTheme: {
 			type: 'string',
@@ -41,7 +42,7 @@ registerBlockType( 'agentimage/aios-gutenberg', {
 		}
 	},
 	edit: EditClass, 
-	save: function() {
+	save: () => {
 		return null;
 	}
 } );

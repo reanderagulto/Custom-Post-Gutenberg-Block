@@ -76,7 +76,7 @@ function aios_gutenberg_cgb_block_assets() { // phpcs:ignore
 			'editor_style'  	=> 'aios_gutenberg-cgb-block-editor-css',
 			// Render Callback
 			'attributes'    	=> array(
-					'listings'		=> array('type' => 'object', 'default'  => array()), 
+					'listings'		=> array('type' => 'string',  'default' => '' ), 
 					'selectedTheme' => array('type' => 'string',  'default' => 'classic'),
 					'numberOfPost'  => array('type' => 'number',  'default' => 4),
 					'featuredOnly'	=> array('type' => 'boolean', 'default' => false)

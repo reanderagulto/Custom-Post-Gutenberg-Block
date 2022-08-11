@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import SortableItem from './SortableItem'
 
 export default class SortableGrid extends React.Component {
-
+  
   state = {
     items: this.props.items
   }
