@@ -27,7 +27,7 @@
 								</span>
 							</div>
 						<div class="aios-classic-listing-price">
-							<?=$listing['list_price']?>
+							<span class="aios-dollar-sign">&#36</span><?=number_format($listing['list_price'],2)?>
 						</div>
 					</div>
 				</a>
