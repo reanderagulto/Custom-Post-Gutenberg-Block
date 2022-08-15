@@ -58,14 +58,14 @@ export default function Edit ( props ){
     }
     function updateSelectedTheme( val ) {
         props.setAttributes( { selectedTheme: val } );
+        fetchdata();
     }
     function updateNoPost( val ) {
         props.setAttributes( { numberOfPost: val } );
+        fetchdata();
     }
     function updateFeaturedOnly( val ) {
         props.setAttributes( { featuredOnly: val } );
-    }
-    function updateSettings(){
         fetchdata();
     }
 
