@@ -20,7 +20,7 @@
 					</div>
 					<div class="aios-block-default-details">
 						<div class="aios-default-listing-address"><?=$listing['full_address']?></div> 
-						<div class="aios-default-listing-price"><span class="aios-dollar-sign">&#36</span><?=number_format($listing['list_price'],2)?></div>
+						<div class="aios-default-listing-price"><span class="aios-dollar-sign">&#36;</span><?=number_format($listing['list_price'],2)?></div>
 						<div class="aios-default-plan">
 							<span>
 								<em>Beds</em>
